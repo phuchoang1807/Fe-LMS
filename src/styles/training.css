@@ -1,0 +1,537 @@
+/* ===================== Training Page CSS ===================== */
+/* --- THEME / VARIABLES --- */
+:root {
+    --subject-width: 160px;
+    /* <- chỉnh giá trị này để thay đổi chiều rộng 1 môn (mặc định 160px) */
+}
+
+/* --- PAGE BASE --- */
+.training-page {
+    padding: 24px 32px;
+    color: #111827;
+    background-color: #ffffff;
+
+}
+
+/* --- BREADCRUMB --- */
+.breadcrumb-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #f9fafb;
+    padding: 12px 32px;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.breadcrumb-left {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.95rem;
+    color: #4b5563;
+    font-weight: 500;
+}
+
+.breadcrumb-current {
+    color: #111827;
+    font-weight: 600;
+}
+
+/* --- MINI PAGINATION --- */
+.mini-pagination {
+    display: flex;
+    align-items: center;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 6px 14px;
+    gap: 8px;
+    font-weight: 500;
+    font-size: 0.9rem;
+    color: #0f172a;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    transition: all 0.25s ease;
+}
+
+.mini-pagination:hover {
+    border-color: #cbd5e1;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.06);
+    transform: translateY(-1px);
+}
+
+.mini-pagination-label {
+    font-weight: 600;
+    color: #0f172a;
+}
+
+.mini-pagination-select {
+    border: none;
+    background: #f8fafc;
+    border-radius: 6px;
+    padding: 4px 10px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #111827;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml;utf8,<svg fill='black' height='12' viewBox='0 0 24 24' width='12' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 8px center;
+    background-size: 12px;
+    padding-right: 24px;
+}
+
+.mini-pagination-select:hover,
+.mini-pagination-select:focus {
+    background: #e0f2fe;
+    border-color: #bae6fd;
+    outline: none;
+}
+
+/* --- TITLE + FILTER --- */
+.title-row {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 20px 32px 8px 32px;
+}
+
+.page-title-small {
+    font-size: 1.7rem;
+    font-weight: 800;
+    color: #0f172a;
+}
+
+/* --- FILTER BAR --- */
+.filter-bar {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    animation: slideIn 0.4s ease forwards;
+}
+
+.filter-item {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.filter-input,
+.filter-select {
+    padding: 6px 10px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    transition: all 0.25s ease-in-out;
+    background: #fff;
+    color: #111827;
+    height: 34px;
+}
+
+.filter-input {
+    width: 200px;
+    padding-right: 26px;
+}
+
+.filter-select {
+    width: 150px;
+}
+
+.filter-input:hover,
+.filter-select:hover {
+    border-color: #94a3b8;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    transform: translateY(-1px);
+}
+
+.filter-input:focus,
+.filter-select:focus {
+    border-color: #0284c7;
+    box-shadow: 0 0 0 2px rgba(2, 132, 199, 0.15);
+    outline: none;
+}
+
+/* --- SEARCH ICON --- */
+.filter-icon {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.85rem;
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+.training-table-container {
+    width: 100%;
+    display: flex;
+    overflow-x: hidden;
+    position: relative;
+}
+
+
+/* ============================================
+   RESET & STYLE CHUNG CHO CẢ 3 BẢNG
+   (giảm min-width chung để không phình quá lớn)
+=============================================== */
+.training-table-fixed-left th,
+.training-table-fixed-left td,
+.training-table-fixed-right th,
+.training-table-fixed-right td,
+.training-table-scroll th,
+.training-table-scroll td {
+    padding: 8px 12px;
+    border-bottom: 1px solid #ffffff;
+    white-space: nowrap;
+    text-align: center;
+    background: #ffffff;
+    min-width: 120px ;
+    box-sizing: border-box;
+    height: 52px ;
+    vertical-align: middle;
+}
+
+/* FIX: Cố định riêng chiều cao cho ô tiêu đề (th) */
+.training-table-fixed-left th,
+.training-table-fixed-right th,
+.training-table-scroll th {
+    height: 52px !important;
+    /* Đảm bảo hàng tiêu đề bằng hàng dữ liệu */
+    white-space: nowrap;
+    /* Cho phép tiêu đề dài xuống dòng */
+}
+
+/* ============================================
+   BẢNG TRÁI CỐ ĐỊNH
+=============================================== */
+.training-table-fixed-left {
+    position: sticky;
+    left: 0;
+    z-index: 3;
+    background: rgb(255, 255, 255);
+    border-right: 1px solid #e2e8f0;
+    /* tránh ảnh hưởng chiều cao khác */
+    box-shadow: 1px 0 0 rgba(0, 0, 0, 0.02);
+    align-self: flex-start !important;
+}
+
+/* đảm bảo table fixed trái nhỏ gọn */
+.training-table-fixed-left {
+    border-collapse: collapse;
+    background: white;
+}
+/* Make left table rows match right table height */
+.training-table-fixed-left th,
+.training-table-fixed-left td {
+    height: 52px !important;
+    line-height: 18px !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+/* ============================================
+   BẢNG PHẢI CỐ ĐỊNH
+=============================================== */
+.training-table-fixed-right {
+    position: sticky;
+    right: 0;
+    z-index: 3;
+    background: white;
+    border-right: 1px solid #e2e8f0;
+    /* tránh ảnh hưởng chiều cao khác */
+    box-shadow: 1px 0 0 rgba(0, 0, 0, 0.02);
+    align-self: flex-start !important;
+}
+
+/* đảm bảo table fixed trái nhỏ gọn */
+.training-table-fixed-right {
+    border-collapse: collapse;
+    background: white;
+}
+
+/* Make right table rows match left table height */
+.training-table-fixed-right th,
+.training-table-fixed-right td {
+    height: 52px !important;
+    line-height: 18px !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+
+/* ============================================
+   BẢNG GIỮA CUỘN NGANG (CHỈ HIỂN THỊ 2 MÔN)
+=============================================== */
+/* key change: giới hạn chỉ hiển thị đủ 2 môn */
+.training-table-scroll {
+    overflow-x: auto;
+    flex: 0 0 auto;
+    max-width: calc(var(--subject-width) * 2 + 20px);
+    /* + padding/border room */
+    -webkit-overflow-scrolling: touch;
+}
+
+/* ensure middle table doesn't stretch parent */
+.training-table-scroll table {
+    width: auto !important;
+    /* giữ width theo nội dung */
+    table-layout: fixed;
+    border-collapse: collapse;
+}
+
+/* enforce subject column width for middle table */
+.training-table-scroll th,
+.training-table-scroll td {
+    min-width: var(--subject-width);
+    width: var(--subject-width);
+    max-width: var(--subject-width);
+    box-sizing: border-box;
+    border: none;
+    /* match previous behavior (no extra border) */
+    padding: 8px 10px;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+/* ============================================
+   BỎ VIỀN RIÊNG CỦA BẢNG GIỮA (nếu còn)
+=============================================== */
+.training-table-scroll th,
+.training-table-scroll td {
+    border: none;
+}
+
+/* --- STATUS BADGE --- */
+.training-page.status-badge {
+    display: inline-block;
+    padding: 4px 9px;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    border: 1px solid #e2e8f0;
+    background: #f8fafc;
+    color: #475569;
+    letter-spacing: 0.2px;
+}
+
+.status-badge.status-intern {
+    background: #e0f2fe;
+    border-color: #60a5fa;
+    color: #1d4ed8;
+}
+
+.status-badge.status-completed {
+    background: #dcfce7;
+    border-color: #86efac;
+    color: #166534;
+}
+
+.status-badge.status-stopped {
+    background: #fee2e2;
+    border-color: #fca5a5;
+    color: #b91c1c;
+}
+
+.status-badge.status-unknown {
+    background: #f8fafc;
+    border-color: #e2e8f0;
+    color: #475569;
+}
+
+
+/* --- ACTION BUTTONS --- */
+.btn-action-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.btn-action {
+    width: 28px;
+    height: 28px;
+    border: none;
+    border-radius: 6px;
+    background: transparent;
+    transition: all 0.25s ease;
+    cursor: pointer;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-view {
+    color: #0284c7;
+}
+
+.btn-edit {
+    color: #eab308;
+}
+
+.btn-action:hover {
+    background: rgba(241, 245, 249, 0.85);
+    transform: scale(1.15) translateY(-2px);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* --- TOOLTIP --- */
+.action-tooltip {
+    position: absolute;
+    bottom: 130%;
+    left: 50%;
+    transform: translateX(-50%) scale(0.9);
+    background-color: rgba(255, 255, 255, 0.92);
+    border: 1px solid #e2e8f0;
+    color: #334155;
+    padding: 4px 8px;
+    border-radius: 6px;
+    white-space: nowrap;
+    font-size: 0.75rem;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.25s ease;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+    backdrop-filter: blur(3px);
+    z-index: 10;
+}
+
+.btn-action-wrapper:hover .action-tooltip {
+    opacity: 1;
+    transform: translateX(-50%) scale(1);
+}
+
+/* VÒNG TRÒN CẤM ĐỎ – CHỈ HIỆN KHI HOVER, SIÊU ĐẸP, KHÔNG ẢNH HƯỞNG TRANG KHÁC */
+.show-ban-effect {
+  position: relative;
+}
+
+/* Khi hover → hiện vòng cấm */
+.show-ban-effect:hover{
+  opacity: 1;
+}
+
+/* Đảm bảo nút vẫn giữ style cũ */
+.btn-edit-disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* --- PAGINATION --- */
+.clean-pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    margin: 12px auto 20px;
+    font-size: 0.9rem;
+    animation: fadeSlideIn 0.25s ease-in-out;
+}
+
+.page-numbers {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.nav-btn,
+.btn-page-number {
+    width: 26px;
+    height: 26px;
+    border: 1px solid #e2e8f0;
+    background: #fff;
+    color: #334155;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+}
+
+.nav-btn:hover,
+.btn-page-number:hover {
+    background-color: #f8fafc;
+    border-color: #cbd5e1;
+    transform: translateY(-1px);
+}
+
+.btn-page-number.active-page {
+    background-color: #0284c7;
+    color: #fff;
+    border-color: #0284c7;
+    transform: scale(1.05);
+    box-shadow: 0 1px 3px rgba(2, 132, 199, 0.25);
+}
+
+.nav-btn:disabled,
+.btn-page-number:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.dots {
+    color: #94a3b8;
+    padding: 0 4px;
+}
+
+/* --- FADE ANIMATIONS --- */
+.fade-in {
+    animation: fadeSlideIn 0.3s ease-in-out forwards;
+}
+
+.fade-out {
+    animation: fadeSlideOut 0.25s ease-in-out forwards;
+}
+
+@keyframes fadeSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeSlideOut {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    to {
+        opacity: 0;
+        transform: translateY(-8px);
+    }
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(12px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+
+/* ===================== END TRAINING PAGE ===================== */
+.training-table-container .col-mid {
+    flex: 1; /* quan trọng */
+    min-width: max-content; /* để không bị ép nhỏ */
+    overflow: visible;
+}

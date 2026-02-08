@@ -1,0 +1,76 @@
+/* Đây là cái "toast" 2-3 giây */
+.notification-toast {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 1rem 1.5rem;
+  border-radius: 6px;
+  color: white;
+  font-weight: 600;
+  z-index: 1000;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  animation: slideIn 0.3s ease-out;
+}
+
+.notification-toast.success {
+  background-color: #28a745; /* Màu xanh lá */
+}
+
+.notification-toast.error {
+  background-color: #dc3545; /* Màu đỏ */
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+/* src/components/Notification/Notification.css */
+
+.notification-toast {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 14px 20px;       /* Padding rộng rãi hơn */
+  border-radius: 8px;       /* Bo góc mềm mại */
+  font-weight: 600;
+  z-index: 9999;            /* Đảm bảo nổi lên trên cùng */
+  box-shadow: 0 8px 20px rgba(0,0,0,0.12); /* Đổ bóng nhẹ */
+  animation: slideIn 0.3s ease-out;
+  
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  border-left: 4px solid transparent; /* Viền trái làm điểm nhấn */
+}
+
+/* === SUCCESS: Tone Xanh Dương Pastel === */
+.notification-toast.success {
+  background-color: #F0F7FF;  /* Nền xanh rất nhạt */
+  border-left-color: #3B82F6; /* Viền xanh nổi bật */
+  color: #1E3A8A !important;  /* Chữ xanh đậm (quan trọng để đè style cũ) */
+}
+
+/* === ERROR: Tone Đỏ Pastel (Dễ đọc) === */
+.notification-toast.error {
+  background-color: #FFF2F2;  /* Nền đỏ rất nhạt */
+  border-left-color: #E63946; /* Viền đỏ tươi */
+  color: #B91C1C !important;  /* Chữ đỏ đậm (quan trọng để đè class .error global) */
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}

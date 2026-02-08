@@ -1,0 +1,107 @@
+/* loginpage.css */
+
+/* Reset mặc định trình duyệt */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Toàn bộ trang login */
+.login-page {
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #3e3e3e7a;
+  overflow: hidden; /* ✅ tránh tràn và viền trắng */
+}
+
+/* Bọc form */
+.login-page .login-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* Card chính */
+.login-page .login-card {
+  width: 400px;
+  background: rgb(255, 255, 255);
+  backdrop-filter: blur(14px);
+  border-radius: 16px;
+  padding: 40px 35px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  animation: fadeIn 0.8s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Tiêu đề */
+.login-page .login-card h2 {
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #085093c2;
+}
+
+/* Form đăng nhập */
+.login-page .auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+
+/* Nút đăng nhập */
+.login-page button[type="submit"] {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #00b4d8, #0077b6);
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.login-page button[type="submit"]:hover {
+  transform: scale(1.03);
+  background: linear-gradient(135deg, #0096c7, #023e8a);
+}
+
+/* Footer */
+.login-page .login-footer {
+  margin-top: 20px;
+  font-size: 14px;
+}
+
+.login-page .login-footer a {
+  color: #74c0fc;
+  text-decoration: none;
+}
+
+.login-page .login-footer a:hover {
+  text-decoration: underline;
+}
+
+/* Lỗi chung */
+.login-page .error-text {
+  color: #ff6b6b;
+  margin-bottom: 10px;
+  font-size: 14px;
+}

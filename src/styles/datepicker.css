@@ -1,0 +1,179 @@
+/* === DATEPICKER WRAPPER === */
+.datepicker-wrapper {
+  width: 200px; /* giống .filter-input */
+  height: 34px;
+}
+
+/* === BUTTON HIỂN THỊ NGÀY === */
+.datepicker-input {
+  width: 100%;
+  height: 100%;
+  padding: 6px 10px;
+  font-size: 0.9rem;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  background: #fff;
+  color: #111827;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: all 0.25s ease-in-out;
+  cursor: pointer;
+}
+
+.datepicker-input:hover {
+  border-color: #94a3b8;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  transform: translateY(-1px);
+}
+
+.datepicker-input:focus,
+.datepicker-input:active {
+  border-color: #0284c7;
+  box-shadow: 0 0 0 2px rgba(2, 132, 199, 0.15);
+  outline: none;
+}
+
+/* === ICON LỊCH HIỆN ĐẠI === */
+.calendar-icon {
+  font-size: 18px;
+  color: #555; /* màu xám nhẹ, không màu mè */
+  margin-left: 8px;
+}
+input[type="date"]::-webkit-calendar-picker-indicator {
+  opacity: 0;
+  pointer-events: none;
+}
+.calendar-popup {
+  position: absolute;
+  top: 110%;
+  left: 0;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  padding: 14px;
+  z-index: 100;
+  width: 260px;
+}
+
+/* Header */
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.month-select {
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  padding: 4px 8px;
+  background: #fff;
+  font-size: 0.9rem;
+}
+
+.year-nav {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.year-btn {
+  border: none;
+  background: #f1f5f9;
+  color: #0f172a;
+  padding: 3px 6px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.year-btn:hover {
+  background: #e2e8f0;
+}
+
+/* Days header */
+.calendar-days-header {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+  margin-top: 5px;
+  color: #475569;
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+.day-name {
+  padding: 4px 0;
+}
+
+/* Grid days */
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+  margin-top: 4px;
+}
+
+.calendar-day {
+  padding: 6px 0;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  color: #1e293b;
+}
+
+.calendar-day:hover {
+  background-color: #e0f2fe;
+}
+
+.calendar-day.selected {
+  background-color: #0284c7;
+  color: white;
+  font-weight: 600;
+}
+
+.empty-day {
+  visibility: hidden;
+}
+
+/* Footer */
+.calendar-footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.cancel-btn,
+.apply-btn {
+  border: none;
+  border-radius: 6px;
+  padding: 6px 12px;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.cancel-btn {
+  background: #f1f5f9;
+  color: #1e293b;
+}
+
+.apply-btn {
+  background: #0284c7;
+  color: white;
+}
+
+.cancel-btn:hover {
+  background: #e2e8f0;
+}
+
+.apply-btn:hover {
+  background: #0369a1;
+}
+.calendar-day.today {
+  border: 1px solid #0284c7;
+  background-color: #f0f9ff;
+  color: #0284c7;
+  font-weight: 600;
+  border-radius: 6px;
+}

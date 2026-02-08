@@ -1,0 +1,858 @@
+/* --- PAGE BASE --- */
+.user-page {
+  padding: 24px 32px;
+  font-family: "Inter", "Segoe UI", sans-serif;
+  color: #111827;
+  background-color: #ffffff;
+  min-height: 100vh;
+}
+
+/* --- BREADCRUMB --- */
+.breadcrumb-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f9fafb;
+  padding: 12px 32px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.breadcrumb-left {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.95rem;
+  color: #4b5563;
+  font-weight: 500;
+}
+
+.breadcrumb-current {
+  color: #111827;
+  font-weight: 600;
+}
+
+/* === MINI PAGINATION (HIỂN THỊ) === */
+.mini-pagination {
+  display: flex;
+  align-items: center;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 6px 14px;
+  gap: 8px;
+  font-weight: 500;
+  font-size: 0.9rem;
+  color: #0f172a;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  transition: all 0.25s ease;
+}
+
+.mini-pagination:hover {
+  border-color: #cbd5e1;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.06);
+  transform: translateY(-1px);
+}
+
+.mini-pagination-label {
+  font-weight: 600;
+  color: #0f172a;
+}
+
+/* === HIỂN THỊ SELECT (mượt và xóa màu) === */
+.mini-pagination-select {
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  padding: 4px 10px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #111827;
+  background: #fff; /* ✅ nền trắng tinh khi dropdown */
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  transition: all 0.25s ease;
+  background-image: url("data:image/svg+xml;utf8,<svg fill='black' height='12' viewBox='0 0 24 24' width='12' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+  background-size: 12px;
+  padding-right: 24px;
+}
+
+
+/* Khi focus hoặc hover */
+.mini-pagination-select:hover,
+.filter-select:hover,
+.datepicker-input:hover {
+  background-color: #fefefe; /* gần trắng */
+  border-color: #cbd5e1;
+  box-shadow: 0 0 0 2px rgba(2, 132, 199, 0.08);
+}
+/* === Focus: giữ hiệu ứng nhẹ nhàng khi chọn === */
+.mini-pagination-select:focus,
+.filter-select:focus,
+.datepicker-input:focus {
+  background-color: #ffffff;
+  border-color: #0284c7;
+  box-shadow: 0 0 0 2px rgba(2, 132, 199, 0.15);
+  outline: none;
+}
+/* === FADE-IN CHO MENU DROPDOWN === */
+.mini-pagination-select option {
+  background-color: #ffffff; /* ✅ không màu nền khi mở */
+  color: #111827;
+  animation: fadeInDropdown 0.3s ease-in-out;
+}
+
+@keyframes fadeInDropdown {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/* === TITLE + FILTER BAR === */
+.title-row {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 20px 32px 8px 32px;
+}
+
+.page-title-small {
+  font-size: 2rem;         /* 🔹 to hơn một chút */
+  font-weight: 800;
+  color: #0f172a;
+  margin-top: -10px;        /* 🔹 kéo chữ cao hơn */
+  line-height: 1.2;         /* 🔹 giữ khoảng cách dòng hợp lý */
+}
+
+.filter-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  animation: slideIn 0.4s ease forwards;
+}
+
+/* === FILTER INPUTS === */
+.filter-item {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+/* === DROPDOWN TÌM KIẾM (TÊN + TRẠNG THÁI) === */
+.filter-input,
+.filter-select {
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #0f172a;
+  font-size: 0.95rem;
+  font-weight: 500;
+  padding: 9px 14px;
+  height: 38px;
+  transition: all 0.25s ease;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+}
+
+.filter-input {
+  width: 220px;
+  padding-right: 30px;
+}
+.filter-date {
+  width: 160px;
+}
+/* Search icon inside input */
+.search-input-container {
+  position: relative;
+  width: 220px;
+}
+.filter-input.search-input {
+  padding-right: 35px; 
+}
+/* === ICON KÍNH LÚP CÓ HIỆU ỨNG NHẸ === */
+.filter-icon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%) scale(1);
+  font-size: 1rem;
+  color: #64748b;
+  pointer-events: none;
+  transition: transform 0.25s ease, color 0.25s ease;
+}
+
+/* Khi hover ô tìm kiếm hoặc focus thì icon nổi lên nhẹ */
+.search-input-container:hover .filter-icon,
+.filter-input:focus + .filter-icon {
+  transform: translateY(-52%) scale(1.15);
+  color: #0284c7; /* xanh đồng bộ border focus */
+}
+/* === SMOOTH DROPDOWN === */
+.smooth-dropdown {
+  transition: all 0.25s ease-in-out;
+  background: #f8fafc;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+.smooth-dropdown:focus,
+.smooth-dropdown:hover {
+  background-color: #e0f2fe;
+  border-color: #38bdf8;
+  box-shadow: 0 2px 8px rgba(56, 189, 248, 0.2);
+}
+
+/* === ADD BUTTON === */
+.add-btn-wrapper {
+  margin-left: auto;
+margin-bottom: 20px; /* đẩy nút lên trên */
+}
+.modern-add {
+  background: #16a34a;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+.modern-add:hover {
+  background: #22c55e;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 6px rgba(34, 197, 94, 0.25);
+}
+
+/* === TABLE === */
+.table-container {
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.03);
+  margin-top: 16px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  max-width: 98%;
+  margin-inline: auto;
+}
+
+.styled-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+  table-layout: fixed;
+}
+
+.styled-table thead {
+  background-color: #f9fafb;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: #1e293b;
+  font-size: 0.85rem;
+}
+
+.styled-table th,
+.styled-table td {
+  padding: 9px 12px;
+  border-bottom: 1px solid #f1f5f9;
+  vertical-align: middle;
+}
+
+.styled-table tr:nth-child(even) {
+  background-color: #fafafa;
+}
+.styled-table tr:hover {
+  background-color: #f1f5f9;
+  transition: background 0.2s ease;
+}
+
+/* Column alignments */
+.styled-table th:nth-child(1),
+.styled-table td:nth-child(1) {
+  text-align: center;
+  width: 55px;
+}
+.styled-table th:nth-child(2),
+.styled-table td:nth-child(2) {
+  text-align: left;
+  width: 300px;
+}
+.styled-table th:nth-child(3),
+.styled-table td:nth-child(3),
+.styled-table th:nth-child(4),
+.styled-table td:nth-child(4) {
+  text-align: center;
+  width: 130px;
+}
+.styled-table th:nth-child(5),
+.styled-table td:nth-child(5) {
+  text-align: center;
+  width: 160px;
+}
+.styled-table th:nth-child(6),
+.styled-table td:nth-child(6) {
+  text-align: center;
+  width: 100px;
+}
+
+/* === STATUS BADGE === */
+.status-badge {
+  display: inline-block;
+  padding: 4px 9px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  border: 1px solid #e2e8f0;
+  background: #f8fafc;
+  color: #475569;
+}
+
+/* === ACTION BUTTONS === */
+.btn-group {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+.btn-action-wrapper {
+  position: relative;
+  display: inline-block;
+}
+.btn-action {
+  width: 34px;      /* tăng nhẹ kích thước khung chứa icon */
+  height: 34px;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  transition: all 0.25s ease;
+  cursor: pointer;
+  font-size: 20px;  /* tăng kích thước chính của icon */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.btn-action svg {
+  width: 20px !important;
+  height: 20px !important;
+  flex-shrink: 0;
+}
+.btn-view {
+  color: #0284c7;
+}
+.btn-edit {
+  color: #eab308;
+}
+.btn-action:hover {
+  background: rgba(241, 245, 249, 0.85);
+  transform: scale(1.15) translateY(-2px);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Tooltip (fade-in smooth, blur light) */
+.action-tooltip {
+  position: absolute;
+  bottom: 130%;
+  left: 50%;
+  transform: translateX(-50%) scale(0.9);
+  background-color: rgba(255, 255, 255, 0.92);
+  border: 1px solid #e2e8f0;
+  color: #334155;
+  padding: 4px 8px;
+  border-radius: 6px;
+  white-space: nowrap;
+  font-size: 0.75rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.25s ease;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+  backdrop-filter: blur(3px);
+  z-index: 10;
+}
+.btn-action-wrapper:hover .action-tooltip {
+  opacity: 1;
+  transform: translateX(-50%) scale(1);
+}
+
+/* === PAGINATION === */
+.clean-pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  margin: 12px auto 20px;
+  font-size: 0.9rem;
+  animation: fadeSlideIn 0.25s ease-in-out;
+}
+.page-numbers {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.nav-btn,
+.btn-page-number {
+  width: 26px;
+  height: 26px;
+  border: 1px solid #e2e8f0;
+  background: #fff;
+  color: #334155;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+.nav-btn:hover,
+.btn-page-number:hover {
+  background-color: #f8fafc;
+  border-color: #cbd5e1;
+  transform: translateY(-1px);
+}
+.btn-page-number.active-page {
+  background-color: #0284c7;
+  color: #fff;
+  border-color: #0284c7;
+  transform: scale(1.05);
+  box-shadow: 0 1px 3px rgba(2, 132, 199, 0.25);
+}
+.nav-btn:disabled,
+.btn-page-number:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+/* === DROPDOWN TRẠNG THÁI (nền trắng, mũi tên tinh tế) === */
+.filter-select {
+  width: 170px; /* rộng hơn để cân với ô tìm kiếm */
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml;utf8,<svg fill='%2364748b' height='14' viewBox='0 0 24 24' width='14' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 14px;
+  padding-right: 32px;
+}
+.filter-select:focus {
+  border-color: #0284c7;
+  box-shadow: 0 0 0 2px rgba(2, 132, 199, 0.15);
+  outline: none;
+}
+
+/* Option trong dropdown trắng tinh + hover xanh nhẹ */
+.filter-select option {
+  background: #ffffff;
+  color: #111827;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-weight: 500;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.filter-select option:hover {
+  background: #e0f2fe;
+  color: #0f172a;
+}
+@keyframes fadeDropdown {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/* === TẮT ANIMATION KHI LOAD DỮ LIỆU / CHUYỂN TRANG === */
+.table-container,
+.styled-table tbody tr,
+.fade-in,
+.fade-out {
+  animation: none !important;
+  transition: none !important;
+  opacity: 1 !important;
+  transform: none !important;
+}
+/* === DATEPICKER INPUT === */
+.datepicker-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.datepicker-input {
+  padding: 8px 15px; 
+  font-size: 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  background: #fff;
+  color: #111827;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  transition: all 0.25s ease;
+}
+
+.datepicker-input:hover {
+  border-color: #0284c7;
+  box-shadow: 0 0 0 2px rgba(2, 132, 199, 0.15);
+}
+
+/* === CLEAR FILTER BUTTON (PROFESSIONAL RELOAD STYLE) === */
+.clear-filters-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.clear-filters-btn.modern-reset {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #fff;
+  border: 1px solid #d1d5db;
+  color: #0f172a;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-weight: 500;
+  font-size: 0.92rem;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  height: 38px;
+  line-height: 1;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.clear-filters-btn.modern-reset:hover {
+  background: #f0f9ff;
+  border-color: #bae6fd;
+  color: #0369a1;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 6px rgba(56, 189, 248, 0.25);
+}
+/* 🔄 Icon tinh tế, căn giữa, hiệu ứng xoay và sáng nhẹ */
+.icon-refresh {
+  width: 18px;
+  height: 18px;
+  color: #0284c7;
+  transition: transform 0.5s ease, color 0.3s ease, filter 0.3s ease;
+}
+
+/* Hover: icon xoay nhẹ */
+.clear-filters-btn.modern-reset:hover .icon-refresh {
+  transform: rotate(-180deg);
+  color: #0369a1;
+  filter: brightness(1.2);
+}
+/* Khi click: xoay tròn nhanh hơn và sáng mạnh hơn */
+.spin-click {
+  animation: spinAndGlow 0.6s ease forwards;
+}
+
+@keyframes spinAndGlow {
+  0% {
+    transform: rotate(0deg);
+    color: #0284c7;
+    filter: brightness(1);
+  }
+  50% {
+    transform: rotate(200deg);
+    color: #38bdf8;
+    filter: brightness(1.4);
+  }
+  100% {
+    transform: rotate(360deg);
+    color: #0369a1;
+    filter: brightness(1);
+  }
+}
+/* === BỘ LỌC ĐỒNG BỘ TONE TRẮNG === */
+.filter-input,
+.filter-select,
+.filter-date,
+.mini-pagination-select,
+.clear-filters-btn.modern-reset {
+  height: 36px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  background-color: #ffffff;
+  color: #0f172a;
+  transition: all 0.25s ease-in-out;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+  padding: 6px 12px;
+}
+
+/* === HOVER & FOCUS TRẮNG MƯỢT === */
+.filter-input:hover,
+.filter-select:hover,
+.filter-date:hover,
+.mini-pagination-select:hover,
+.clear-filters-btn.modern-reset:hover,
+.filter-input:focus,
+.filter-select:focus,
+.filter-date:focus,
+.mini-pagination-select:focus,
+.clear-filters-btn.modern-reset:focus {
+  background: #f0f9ff;             /* 🔹 trắng pha xanh rất nhẹ */
+  border-color: #cbd5e1;
+  box-shadow: 0 2px 6px rgba(56, 189, 248, 0.15);
+  transform: translateY(-1px);
+  outline: none;
+}
+
+/* === ĐỒNG BỘ ICON (KÍNH LÚP, CALENDAR, ARROW) === */
+.filter-icon,
+.mini-pagination-select,
+.filter-select {
+  color: #64748b;
+}
+
+/* === NÚT XÓA TẤT CẢ BỘ LỌC === */
+.clear-filters-btn.modern-reset {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  line-height: 1.2;
+  background: #ffffff;
+}
+
+/* Hover đồng bộ tone trắng */
+.clear-filters-btn.modern-reset:hover {
+  color: #0369a1;
+  background: #f0f9ff;
+  border-color: #cbd5e1;
+  transform: translateY(-1px);
+}
+
+/* === KHUNG CHUNG FILTER BAR === */
+.filter-bar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px; /* 🔹 spacing đồng bộ */
+  margin-top: 4px;
+  margin-bottom: 4px;
+}
+/* Dropdown trạng thái nhẹ nhàng hơn, không in đậm */
+.filter-select {
+  width: 180px;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  padding: 9px 14px;
+  background-color: #ffffff;
+  color: #334155;               /* 🔹 chữ rõ hơn (xanh xám đậm nhẹ) */
+  font-size: 0.95rem;
+  font-weight: 500;             /* 🔹 bỏ in đậm, vừa phải */
+  background-image: url("data:image/svg+xml;utf8,<svg fill='%232874eb' height='14' viewBox='0 0 24 24' width='14' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 14px;
+  padding-right: 34px;
+  transition: all 0.25s ease;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+}
+
+/* Hover + Focus đồng bộ */
+.filter-select:hover,
+.filter-select:focus {
+  background-color: #f8fafc;
+  border-color: #38bdf8;
+  color: #1e293b;               /* 🔹 đậm hơn khi hover */
+  box-shadow: 0 2px 6px rgba(56, 189, 248, 0.15);
+  outline: none;
+}
+/* ... existing code ... */
+
+/* === TITLE + FILTER BAR === */
+.title-row {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 20px 32px 8px 32px;
+}
+
+.page-title-small {
+  font-size: 2rem;         
+  font-weight: 800;
+  color: #0f172a;
+  margin-top: -10px;       
+  line-height: 1.2;         
+}
+
+/* ✅ CHỈNH SỬA: Dồn các filter về bên trái, gap nhỏ lại */
+.filter-bar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: flex-start; /* Dồn sang trái thay vì space-between */
+  gap: 12px;                   /* Khoảng cách giữa các ô là 12px */
+  animation: slideIn 0.4s ease forwards;
+}
+
+/* === FILTER INPUTS === */
+.filter-item {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+/* ===================== COURSE TABLE CUSTOMIZATION ===================== */
+
+/* Tinh chỉnh bảng Môn học: Tối ưu không gian cho cột Mô tả */
+.styled-table.course-table {
+  table-layout: fixed; /* Cố định khung để tính toán width chính xác */
+}
+
+/* 1. STT: Nhỏ gọn hết mức */
+.styled-table.course-table th:nth-child(1), 
+.styled-table.course-table td:nth-child(1) {
+  width: 50px; 
+  text-align: center;
+}
+
+/* 2. Tên môn học: Vừa đủ hiển thị */
+.styled-table.course-table th:nth-child(2), 
+.styled-table.course-table td:nth-child(2) {
+  width: 180px; 
+  text-align: left;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+/* 3. Số ngày học: Thu hẹp lại, nhường đất cho Mô tả */
+.styled-table.course-table th:nth-child(3), 
+.styled-table.course-table td:nth-child(3) {
+  width: 110px;
+  text-align: center;
+}
+
+/* 4. MÔ TẢ: QUAN TRỌNG NHẤT */
+.styled-table.course-table th:nth-child(4), 
+.styled-table.course-table td:nth-child(4) {
+  width: 50%; /* Chiếm toàn bộ không gian còn lại */
+  text-align: center !important; /* Căn trái bắt buộc để dễ đọc */
+  vertical-align: middle; /* Căn trên để đẹp hơn khi nội dung dài */
+  white-space: normal; /* Cho phép xuống dòng tự nhiên */
+  padding: 12px 16px; /* Tăng khoảng cách cho thoáng mắt */
+  line-height: 1.5; /* Giãn dòng giúp chữ không bị díu */
+  color: #374151;
+}
+
+/* 5. Hành động: Đủ rộng cho 2 nút nằm ngang */
+.styled-table.course-table th:nth-child(5), 
+.styled-table.course-table td:nth-child(5) {
+  width: 130px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+/* Style riêng cho nút Xóa màu đỏ nhạt (nếu chưa có) */
+.btn-reject-red {
+  color: #ef4444;
+  background-color: #fee2e2;
+  transition: all 0.2s;
+}
+.btn-reject-red:hover {
+  background-color: #fecaca;
+  color: #dc2626;
+  transform: translateY(-1px);
+}
+/* --- Áp dụng cho Modal Chỉnh sửa môn học --- */
+/* Thay .course-modal bằng tên class thực tế trong file CourseModal.jsx nếu khác */
+.course-modal, .admin-modal-content {
+  background: #ffffff;
+  border-radius: 12px;
+  overflow: hidden; /* Bo góc mượt mà */
+  padding: 0 !important; /* Để header/footer tràn viền */
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  max-width: 500px; /* Độ rộng tùy chỉnh */
+  width: 90%;
+}
+
+/* 1. HEADER: Xanh đậm, Chữ trắng */
+.course-modal .modal-header,
+.admin-modal-content .modal-header {
+  background-color: #1e40af;
+  color: white !important;
+  padding: 20px 24px;
+  border-bottom: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.course-modal .modal-header h2,
+.course-modal .modal-header h3 {
+  margin: 0;
+  color: white !important;
+  font-weight: 600;
+}
+
+/* 2. BODY: Nền trắng, nội dung form */
+.course-modal .modal-body,
+.admin-modal-content .modal-body {
+  padding: 24px;
+  background-color: white;
+  overflow-y: auto;
+  color: #374151;
+}
+
+/* 3. FOOTER: Xanh đậm, Chữ trắng */
+.course-modal .modal-footer,
+.admin-modal-content .modal-footer {
+  background-color: #1e40af;
+  border-top: none;
+  padding: 16px 24px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: auto;
+}
+
+/* 4. BUTTONS */
+/* Nút Hủy: Nền trong suốt mờ */
+.course-modal .btn-cancel,
+.admin-modal-content .btn-secondary {
+  background-color: rgba(255, 255, 255, 0.15) !important;
+  color: white !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  min-width: 90px;
+  height: 38px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+}
+.course-modal .btn-cancel:hover {
+  background-color: rgba(255, 255, 255, 0.25) !important;
+}
+
+/* Nút Lưu: Nền Trắng, Chữ Xanh */
+.course-modal .btn-save,
+.admin-modal-content .btn-primary {
+  background-color: white !important;
+  color: #1e40af !important;
+  border: none;
+  min-width: 90px;
+  height: 38px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+}
+.course-modal .btn-save:hover {
+  background-color: #f0f9ff !important;
+}

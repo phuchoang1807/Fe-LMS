@@ -1,0 +1,263 @@
+/* src/styles/AddResultModal.css - FINAL VERSION */
+
+/* Chia form modal làm 2 cột (Dùng cho phần Thông tin & Trạng thái) */
+.candidate-form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px 24px; /* Thêm gap dọc 16px */
+}
+
+.form-column {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Ghi đè CSS từ Form.css/login.css */
+.candidate-form-grid .form-group {
+    margin-bottom: 0; /* Đã chuyển sang dùng gap của grid */
+}
+
+.candidate-form-grid label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #111827;
+    text-align: left;
+}
+
+/* Style chung cho input/select */
+.input-style,
+.candidate-form-grid .input-wrapper input,
+.candidate-form-grid select {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    outline: none;
+    background: #ffffff;
+    color: #111827;
+    transition: all 0.2s;
+    box-sizing: border-box;
+    height: 42px;
+}
+
+.candidate-form-grid .input-wrapper {
+    height: auto;
+}
+
+.candidate-form-grid .input-wrapper input {
+    background: #ffffff;
+    color: #111827;
+    border: 1px solid #d1d5db;
+}
+
+.candidate-form-grid .input-wrapper input::placeholder {
+    color: #9ca3af;
+}
+
+/* Style cho input read-only (thông tin có sẵn) */
+.candidate-form-grid .input-wrapper input[readonly] {
+    background: #f9fafb;
+    color: #4b5563;
+    border-color: #e5e7eb;
+    cursor: not-allowed;
+}
+
+.candidate-form-grid .input-wrapper input:focus,
+.candidate-form-grid select:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.15);
+}
+
+/* Lỗi validation */
+.input-error {
+    border-color: #ef4444 !important;
+}
+.candidate-form-grid .error-message {
+    color: #ef4444;
+    font-size: 0.8rem;
+    margin-top: 4px;
+    text-align: left;
+}
+
+/* Lỗi API */
+.api-error-box {
+    grid-column: 1 / -1;
+    background-color: #fef2f2;
+    color: #b91c1c;
+    border: 1px solid #fecaca;
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-align: center;
+}
+
+/* Tiêu đề các phần (Thông tin, Kết quả, Trạng thái) */
+.form-section-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #111827;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #0284c7; /* Màu xanh */
+    margin-top: 16px;
+    margin-bottom: 16px;
+    grid-column: 1 / -1; 
+}
+.form-section-title:first-child {
+    margin-top: 0;
+}
+
+/* Màu cho PASS/FAIL dropdown */
+select option.text-pass {
+    color: #15803d;
+    font-weight: 600;
+}
+select option.text-fail {
+    color: #b91c1c;
+    font-weight: 600;
+}
+/* Style cho option bị disabled */
+select option:disabled {
+    color: #9ca3af;
+    background: #f3f4f6;
+}
+
+
+/* Nút "Save" (style xanh lá) */
+.modal-btn.btn-save {
+    background: #22c55e;
+    color: #ffffff;
+}
+.modal-btn.btn-save:hover:not(:disabled) {
+    background: #16a34a;
+}
+.modal-btn.btn-save:disabled {
+    background: #bbf7d0;
+    color: #166534;
+    opacity: 1;
+    cursor: not-allowed;
+}
+
+/* Nút "Hủy" (style xám) */
+.modal-btn.btn-secondary {
+    background-color: #e5e7eb;
+    color: #374151;
+}
+.modal-btn.btn-secondary:hover:not(:disabled) {
+    background: #d1d5db;
+}
+
+.modal-footer.justify-end {
+    justify-content: flex-end;
+}
+.modal-scroll-form {
+    flex: 1; 
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto; 
+}
+
+/* 2. Ghi đè modal-body (bỏ cuộn) */
+.modal-scroll-form .modal-body {
+    overflow-y: visible; 
+    padding: 20px 24px;
+}
+
+/* 3. Ghi đè modal-footer (để ghim xuống đáy) */
+.modal-scroll-form .modal-footer {
+    padding: 16px 20px;
+    border-top: 1px solid #e5e7eb;
+    background: #fff;
+    margin-top: auto; 
+    
+    /* Ghim footer khi cuộn */
+    position: sticky;
+    bottom: 0;
+    z-index: 10;
+}
+
+/* 4. Bổ sung khoảng cách cho grid 2 cột (Thông tin, Trạng thái) */
+.candidate-form-grid .form-group {
+    margin-bottom: 0;
+}
+.candidate-form-grid {
+    gap: 16px 24px; 
+}
+
+/* ========================================= */
+/* === SỬA ĐỔI UI THEO YÊU CẦU MỚI (3-COLUMN, CENTERED RESULT, TEXTAREA) === */
+/* ========================================= */
+
+/* NEW GRID 3 COLUMNS: Cho Attendance, Test Score, Interview Score */
+.candidate-form-grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px 24px; 
+    margin-bottom: 16px;
+    grid-column: 1 / -1; /* Luôn chiếm toàn bộ chiều ngang */
+}
+.candidate-form-grid-3 .form-group {
+    margin-bottom: 0; 
+}
+
+/* Sửa lại textarea nhận xét: full-width và có min-height */
+.form-group.full-width {
+    grid-column: 1 / -1; /* Chiếm toàn bộ chiều ngang */
+}
+
+.form-group textarea.input-style {
+    min-height: 100px; /* Chiều cao tối thiểu cho Nhận xét */
+    max-height: 200px;
+    resize: vertical;
+    height: auto;
+    padding: 10px 12px; /* Đảm bảo padding khớp với input */
+}
+
+/* KẾT QUẢ CUỐI CÙNG: 1 hàng, căn giữa, nổi bật */
+.final-result-block {
+    grid-column: 1 / -1; /* Full width */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center horizontally */
+    gap: 10px;
+    margin-top: 25px; 
+    margin-bottom: 25px;
+    padding: 15px 0;
+    border-top: 2px solid #e5e7eb;
+    border-bottom: 2px solid #e5e7eb;
+}
+
+.final-result-block label {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #0284c7; /* Màu xanh nổi bật */
+    margin-bottom: 0;
+}
+
+.final-result-block .final-result-select {
+    width: 250px; 
+    text-align: center;
+    font-size: 1.1rem;
+    height: 50px;
+    font-weight: 700;
+    border: 2px solid #0284c7;
+    box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.15);
+    background-color: #f0f9ff;
+}
+
+.final-result-block .final-result-select:focus {
+    box-shadow: 0 0 0 4px rgba(2, 132, 199, 0.25);
+}
+.modal-footer {
+  padding: 20px 24px;
+  background: #f1f5f9;
+  border-top: 1px solid #e2e8f0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-shrink: 0;
+}

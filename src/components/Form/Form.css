@@ -1,0 +1,57 @@
+/* form.css */
+
+/* Nhóm input */
+.form-group {
+  width: 100%;
+  margin-bottom: 18px;
+  box-sizing: border-box;
+}
+
+/* Wrapper chứa input + icon */
+.input-wrapper {
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Input chính */
+.input-wrapper input {
+  width: 100%;
+  padding: 12px 38px 12px 15px; /* chừa chỗ cho icon, không dư */
+  border: 0.3px solid #6c98c7;
+  border-radius: 10px;
+  font-size: 15px;
+  outline: none;
+  background: rgba(255, 255, 255, 0.15);
+  color: #509be5;
+  transition: 0.3s;
+  box-sizing: border-box; /* ✅ fix tràn */
+}
+
+.input-wrapper input::placeholder {
+  color: #bbb;
+}
+
+.input-wrapper input:focus {
+  background: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 0 6px rgba(0, 150, 255, 0.6);
+}
+
+/* Icon hiện/ẩn mật khẩu */
+.toggle-password {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #6c98c7;
+  user-select: none;
+}
+
+/* Lỗi dưới input */
+.error-message {
+  color: #ff6b6b;
+  font-size: 13px;
+  margin-top: 6px;
+  display: block;
+}

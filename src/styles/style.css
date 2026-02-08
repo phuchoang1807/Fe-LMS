@@ -1,0 +1,157 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f8f9fa;
+  margin: 0;
+  padding: 0;
+}
+
+.login-container {
+  width: 400px;
+  margin: 100px auto;
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.login-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.login-container form div {
+  margin-bottom: 15px;
+}
+
+.login-container input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.login-container button {
+  width: 100%;
+  padding: 10px;
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.error {
+  color: red;
+  text-align: center;
+}
+
+/* === BỔ SUNG: bảo đảm icon theo màu chữ hiện tại === */
+.icon-btn { color: var(--text); }        /* nút chuông/mặt trời/mặt trăng */
+.icon-btn svg { stroke: currentColor; }
+
+.avatar { color: var(--text); }          /* nút avatar tròn */
+.avatar svg { stroke: currentColor; }
+
+.nav__item { color: var(--muted); }
+.nav__item svg { stroke: currentColor; } /* icon menu trái theo màu item */
+.nav__item--active { color: var(--accent-text); }
+/* 1. CONTAINER CHÍNH: Xử lý bo góc và màu nền */
+.modal-content {
+  background-color: white;
+  /* BO GÓC: Tăng lên 12px hoặc 16px để nhìn mượt hơn */
+  border-radius: 12px; 
+  /* QUAN TRỌNG: Ẩn phần thừa để Header/Footer không che mất góc bo */
+  overflow: hidden; 
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  
+  /* QUAN TRỌNG: Đặt padding = 0 ở container cha để Footer có thể tô màu kín viền */
+  padding: 0; 
+  
+  /* Sử dụng Flexbox để quản lý bố cục dọc */
+  display: flex;
+  flex-direction: column;
+  max-height: 90vh; /* Giới hạn chiều cao */
+}
+
+/* 2. HEADER: Thêm padding riêng (vì đã bỏ padding ở container) */
+.modal-header {
+  padding: 20px 24px;
+  border-bottom: 1px solid #e5e7eb;
+  background-color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-header h3, .modal-title {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #111827;
+}
+
+/* 3. BODY: Cuộn nội dung ở giữa */
+.modal-body {
+  padding: 24px; /* Chuyển padding từ container vào đây */
+  overflow-y: auto; /* Chỉ cuộn phần body */
+  flex: 1; /* Chiếm hết khoảng trống còn lại */
+}
+
+/* 4. FOOTER: Xử lý tô màu kín và cân đối nút */
+.modal-footer {
+  /* TÔ MÀU KÍN: Vì container padding=0 nên footer sẽ tràn ra tận mép */
+  background-color: #f9fafb; 
+  border-top: 1px solid #e5e7eb;
+  padding: 16px 24px; /* Tạo độ thoáng */
+  
+  /* CÂN ĐỐI NÚT: Dùng flexbox */
+  display: flex;
+  justify-content: flex-end; /* Căn phải */
+  align-items: center;
+  gap: 12px; /* Khoảng cách đều giữa các nút */
+  
+  /* Đảm bảo footer luôn nằm dưới cùng */
+  margin-top: auto;
+}
+
+/* 5. BUTTONS: Kích thước đồng đều */
+.modal-footer button, 
+.modal-btn {
+  /* CÙNG KÍCH THƯỚC: Đặt chiều rộng tối thiểu */
+  min-width: 100px; 
+  height: 40px; 
+  
+  /* Căn chữ giữa nút */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  
+  border-radius: 6px; /* Bo góc nút nhẹ */
+  font-weight: 500;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: none;
+}
+
+/* Style riêng cho nút Hủy (Secondary) */
+.btn-secondary {
+  background-color: white;
+  border: 1px solid #d1d5db !important;
+  color: #374151;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+.btn-secondary:hover {
+  background-color: #f3f4f6;
+  border-color: #9ca3af !important;
+}
+
+/* Style riêng cho nút Lưu (Primary) */
+.btn-save {
+  background-color: #2563eb; /* Màu xanh */
+  color: white;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+.btn-save:hover {
+  background-color: #1d4ed8;
+}

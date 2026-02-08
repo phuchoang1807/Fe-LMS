@@ -1,0 +1,422 @@
+    /* ===== Pure CSS theme for EduAdmin (no Tailwind) ===== */
+    /* --- Theme variables --- */
+    :root{
+    /* LIGHT MODE – soft dashboard theme */
+    --bg:            #f3f4f6;   /* main background – gray soft */
+    --panel:         #ffffff;   /* header & sidebar */
+    --text:          #1f2937;   /* slate-800 */
+    --muted:         #6b7280;   /* slate-500 */
+    --border:        #e0e0e0;   /* soft border */
+
+    /* UI surface tones */
+    --elev-1:        #e9eaed;   /* hover background */
+    --accent-bg:     #dfe3ff;   /* active background – soft indigo pastel */
+    --accent-text:   #1e1e2f;   /* rich dark text on active */
+    --accent-ring:   rgba(100, 116, 255, .15); /* subtle shadow */
+
+    --ring:          rgba(0,0,0,.04);
+    --side-w:        18rem;
+    --header-h:      72px;
+    --pad-x:         24px;
+    }
+
+
+    .theme-dark{
+    /* DARK: panel & main tối, nhưng panel hơi khác để nổi khối; accent là chip tối trong suốt */
+    --bg:            #0b1220;
+    --panel:         #0f172a;    /* header + sidebar cùng màu */
+    --text:          #e5e7eb;
+    --muted:         #b6c2d4;
+    --border:        #1f2a3a;
+
+    --elev-1:        rgba(255,255,255,.04);       /* hover */
+    --accent-bg:     rgba(255,255,255,.08);       /* ACTIVE bg “tối hơn” nền */
+    --accent-text:   #ffffff;                      /* ACTIVE text/icon */
+    --accent-ring:   rgba(0,0,0,.45);             /* ACTIVE shadow trong dark */
+
+    --ring:          rgba(255,255,255,.06);
+    }
+
+    /* --- Base --- */
+    *{box-sizing:border-box}
+    html, body, #root { height: 100%; }
+    body{
+    margin:0;
+    font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+    background: var(--bg);
+    color: var(--text);
+    transition: background-color .2s,color .2s,border-color .2s;
+    }
+    a{ color: inherit; text-decoration: none; }
+
+    /* --- Layout --- */
+    .app{ display:flex; min-height:100vh; }
+    .app__main{ flex:1; margin-left: var(--side-w); min-height:100vh; background: var(--bg); }
+    .app__container{ padding: 2rem; }
+
+    /* --- Sidebar --- */
+    .sidebar{
+    position: fixed; inset: 0 auto 0 0; width: var(--side-w);
+    background: var(--panel);                       /* cùng màu header */
+    /* border-right: 1px solid var(--border);  (để liền mạch thì bỏ) */
+    display:flex; flex-direction:column;
+    z-index:20;
+    }
+    .sidebar__logo{
+    height: var(--header-h);
+    padding: 0 var(--pad-x);
+    display:flex; align-items:center;
+    border-bottom:1px solid var(--border);
+    }
+    .brand{ display:flex; align-items:center; gap:.75rem; }
+    .brand__mark{
+    width:2.5rem; height:2.5rem; border-radius:.75rem;
+    display:flex; align-items:center; justify-content:center;
+    background:#e5e7eb;
+    }
+    .theme-dark .brand__mark{ background:#d5dbea; }
+    .brand__mark span{ color:#0f172a; font-weight:800; font-size:1.25rem; }
+    .brand__title{ font-weight:800; font-size:1.125rem; color: var(--text); }
+    .brand__subtitle{ font-size:.75rem; color: var(--muted); }
+
+    /* Menu */
+    .nav{ padding:1rem var(--pad-x) 2rem var(--pad-x); display:grid; gap:.5rem; }
+    .nav__item{
+    display:flex; align-items:center; gap:.75rem; padding:.75rem .875rem;
+    border-radius:.75rem; color: var(--muted); cursor:pointer;
+    transition: background-color .2s,color .2s, box-shadow .2s, border-color .2s;
+    }
+    .nav__item:hover{ background: var(--elev-1); color: var(--text); }
+    .nav__item--active{
+    background: var(--accent-bg); color: var(--accent-text);
+    box-shadow: 0 6px 26px var(--accent-ring);
+    border: 1px solid transparent;
+    }
+    .nav__label{ font-size:.9rem; font-weight:600; }
+
+    /* --- Header --- */
+    .header{
+    position: sticky; top:0; z-index:30;
+    height: var(--header-h);
+    background: var(--panel);                        /* cùng màu sidebar */
+    border-bottom: 1px solid var(--border);
+    display:flex; align-items:center; justify-content:space-between;
+    padding: 0 var(--pad-x);
+    box-shadow: 0 2px 20px var(--ring);
+    }
+    .header__left{ display:flex; align-items:center; gap:1rem; height:100%; }
+    .header__title{ font-weight:800; color: var(--text); }
+
+    /* Header actions */
+    .header__right{ display:flex; align-items:center; gap:.75rem; height:100%; }
+.header__greeting{
+  font-weight:700;
+  color: var(--text);
+  padding: .35rem .75rem;
+  border-radius: .75rem;
+  background: var(--elev-1);
+  border: 1px solid var(--border);
+}
+.icon-btn{
+    height:2.5rem; width:2.5rem; display:grid; place-items:center;
+    border-radius:.75rem; border:1px solid var(--border);
+    background: var(--elev-1);
+    }
+.icon-btn:hover{ box-shadow: 0 2px 10px var(--ring); }
+
+.notification__btn{ position:relative; }
+.notification__badge{
+  position:absolute;
+  top:8px; right:8px;
+  width:8px; height:8px;
+  background:#ef4444;
+  border-radius:9999px;
+
+}
+.notification__menu{
+  width: 36rem;
+  max-width: 94vw;
+  max-height: 28rem;
+  overflow:auto;
+  padding: .85rem;
+  border-radius: 1rem;
+  border: 1px solid var(--border);
+  box-shadow: 0 20px 60px var(--ring);
+  background: var(--panel);
+}
+.notification__header{
+  font-weight:800;
+  padding:.25rem .5rem .75rem;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  border-bottom: 1px solid var(--border);
+  margin-bottom:.5rem;
+}
+.notification__empty{
+  padding:1.25rem .75rem;
+  color: var(--muted);
+  text-align:center;
+}
+
+.notification__section{ margin-bottom:1rem; }
+.notification__section:last-of-type{ margin-bottom:0; }
+.notification__section-title{
+  display:flex;
+  align-items:center;
+  gap:.4rem;
+  font-weight:700;
+  color: var(--text);
+  padding:.35rem .25rem;
+}
+.notification__section--muted .notification__section-title{ color: var(--muted); }
+.notification__pill{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-width:1.8rem;
+  height:1.4rem;
+  padding:0 .5rem;
+  border-radius:999px;
+  background: rgba(79, 70, 229, 0.12);
+  color:#4f46e5;
+  font-size:.85rem;
+  font-weight:700;
+}
+.notification__pill--ghost{
+  background: var(--elev-1);
+  color: var(--muted);
+  border:1px solid var(--border);
+}
+.notification__item{
+  padding: .9rem 1rem;
+  border-radius: .95rem;
+  border:1px solid var(--border);
+  cursor:pointer;
+  transition: background-color .18s, border-color .18s, box-shadow .18s;
+  background: linear-gradient(180deg, rgba(255,255,255,.65), rgba(255,255,255,.5));
+  display:flex;
+  align-items:flex-start;
+  gap:.75rem;
+}
+.theme-dark .notification__item{
+  background: linear-gradient(180deg, rgba(17,24,39,.7), rgba(17,24,39,.55));
+}
+.notification__item + .notification__item{ margin-top:.5rem; }
+.notification__item:hover{
+  background: var(--elev-1);
+  box-shadow: 0 10px 30px var(--ring);
+}
+
+.notification__item--unread{
+  border-color: rgba(79, 70, 229, 0.35);
+  box-shadow: 0 10px 40px rgba(79, 70, 229, 0.12);
+}
+.notification__body{ flex:1; display:flex; flex-direction:column; gap:.35rem; min-width:0; }
+.notification__title{ font-weight:700; line-height:1.4; color: var(--text); }
+.notification__content{ color: var(--muted); line-height:1.5; word-break: break-word; }
+.notification__meta{
+  display:flex;
+  align-items:center;
+  gap:.4rem;
+  font-size:.85rem;
+  color: var(--muted);
+}
+.notification__dot{
+  width:.8rem;
+  height:.8rem;
+  border-radius:999px;
+  background: #22c55e;
+    box-shadow: 0 0 0 6px rgba(34,197,94,.12);
+  margin-top:.2rem;
+  flex-shrink:0;
+}
+.notification__dot--muted{
+  background: var(--muted);
+  box-shadow: 0 0 0 6px rgba(107,114,128,.15);
+}
+.notification__time{
+  padding:.15rem .6rem;
+  border-radius: 999px;
+  background: var(--elev-1);
+  border: 1px solid var(--border);
+}
+
+
+    /* Avatar = nút dropdown */
+    .avatar{
+    height:2.5rem; width:2.5rem;
+    display:grid; place-items:center;
+    border-radius:9999px;
+    border:1px solid var(--border);
+    background: var(--elev-1);
+    color: var(--text);
+    cursor:pointer;
+    }
+    .avatar svg { display:block; }
+
+    /* --- Dropdown --- */
+    .dropdown{ position:relative; }
+    .dropdown__menu{
+    position:absolute; right:0; margin-top:.5rem; width: 14rem;
+    background: var(--panel); border:1px solid var(--border); border-radius:.75rem;
+    box-shadow:0 20px 60px var(--ring); padding:.5rem;
+    }
+    .dropdown__item{
+    display:flex; align-items:center; gap:.5rem; padding:.625rem .75rem;
+    border-radius:.5rem; color: var(--text); cursor:pointer;
+    }
+    .dropdown__item:hover{ background: var(--elev-1); }
+
+    /* --- Modal & Toast --- */
+    .backdrop{ position:fixed; inset:0; background:rgba(0,0,0,.5); z-index:50; }
+    .modal{ position:fixed; top:50%; left:50%; transform:translate(-50%,-50%);
+    background: var(--panel); border-radius:1rem; box-shadow:0 40px 120px var(--ring);
+    padding:1.5rem; width:24rem; z-index:60; color: var(--text);
+    }
+    .modal__title{ font-weight:800; font-size:1.125rem; margin-bottom:.5rem; }
+    .modal__text{ color: var(--muted); margin-bottom:1rem; }
+    .btn{ padding:.625rem 1rem; border-radius:.625rem; border:1px solid var(--border);
+        background: var(--elev-1); color: var(--text); cursor:pointer; }
+    .btn:hover{ box-shadow:0 2px 10px var(--ring); }
+    .btn--primary{ background: var(--accent-bg); color: var(--accent-text); border-color:transparent; }
+
+    /* Toast: góc phải – dưới */
+    .toast{
+    position:fixed; right:1rem; bottom:1rem;
+    display:flex; align-items:center; gap:.5rem;
+    background:#16a34a; color:#fff; padding:.5rem .75rem; border-radius:.5rem;
+    z-index:70; box-shadow: 0 8px 40px var(--ring);
+    }
+
+    /* --- Content (cards + grid) --- */
+    .container{ max-width: 64rem; margin-inline:auto; padding-top: 2rem; }
+    .grid{ display:grid; gap:2rem; }
+    .grid--3{ grid-template-columns: repeat(1,1fr); }
+    @media(min-width: 768px){ .grid--3{ grid-template-columns: repeat(3,1fr); } }
+    .card{ background: var(--panel); border-radius: 1rem; padding: 2rem; box-shadow: 0 10px 30px var(--ring); }
+    .theme-dark .card{ background: #11182a; }
+    .card__value{ font-size: 2rem; font-weight: 800; color: var(--text); }
+    .card__label{ color: var(--muted); margin-top:.5rem; }
+
+    /* --- Typography --- */
+    .h1{ font-size: 2rem; font-weight: 900; margin: 0; }
+    .lead{ font-size: 1rem; color: var(--muted); margin: .5rem 0 0 0; }
+
+    
+    /* === SUBMENU UI NÂNG CẤP === */
+
+.nav__submenu {
+  margin-left: 1.5rem;
+  margin-top: 0.25rem;
+  display: grid;
+  gap: 0.25rem;
+  border-left: 2px solid var(--border);
+  padding-left: 0.75rem;
+}
+
+.nav__item--sub {
+  padding: 0.55rem 0.75rem;
+  font-size: 0.85rem;
+  color: var(--muted);
+  border-radius: 0.5rem;
+}
+
+.nav__item--sub:hover {
+  background: var(--elev-1);
+  color: var(--text);
+}
+
+.nav__arrow {
+  margin-left: auto;
+  transition: transform 0.25s ease;
+  opacity: 0.7;
+  font-size: 0.7rem;
+}
+
+.nav__arrow--open {
+  transform: rotate(180deg);
+}
+
+
+/* Mở rộng panel thông báo ngang hơn (nếu muốn) */
+.notification__menu {
+  width: 26rem;          /* ~416px, rộng hơn chút, vẫn responsive */
+  max-width: 96vw;
+}
+
+/* Tabs: Tất cả / Chưa đọc */
+.notification__tabs {
+  display: flex;
+  gap: 0.35rem;
+  padding: 0.35rem;
+  margin: 0.35rem 0 0.5rem;
+  border-radius: 999px;
+  background: var(--elev-1);
+}
+
+.notification__tab {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: var(--muted);
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  transition: background-color 0.18s, color 0.18s, box-shadow 0.18s;
+}
+
+.notification__tab--active {
+  background: var(--panel);
+  color: var(--text);
+  box-shadow: 0 8px 24px var(--ring);
+  border: 1px solid var(--border);
+}
+
+.notification__tab-count {
+  min-width: 1.4rem;
+  height: 1.2rem;
+  padding: 0 0.35rem;
+  border-radius: 999px;
+  background: rgba(79, 70, 229, 0.12);
+  color: #4f46e5;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+/* Để danh sách tách riêng, nhìn giống FB hơn */
+.notification__list {
+  display: grid;
+  gap: 0.5rem;
+}
+
+
+.notification__btn {
+  position: relative;
+}
+
+.notification__badge {
+  position: absolute;
+  top: -3px;
+  right: -3px;
+  min-width: 16px;
+  height: 16px;
+  padding: 0 4px;
+  border-radius: 999px;
+  background: #ef4444; /* đỏ */
+  color: #fff;
+  font-size: 10px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* BỎ viền đen */
+  box-shadow: none; /* hoặc đơn giản là xóa hẳn dòng box-shadow */
+}

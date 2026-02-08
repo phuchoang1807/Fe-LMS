@@ -1,0 +1,365 @@
+/* Nút AI góc phải dưới – đơn giản, nhẹ nhàng */
+.ai-bubble-btn {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.4);
+  background: #f5f3ff; /* tím rất nhạt, hợp nền */
+  color: #4f46e5;
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.05);
+  transition: transform 0.12s ease, box-shadow 0.12s ease,
+    background-color 0.12s ease, color 0.12s ease;
+}
+
+.ai-bubble-btn:hover {
+  background: #ede9fe;
+  color: #4338ca;
+  box-shadow: 0 10px 26px rgba(15, 23, 42, 0.12);
+  transform: translateY(-1px);
+}
+
+/* Cửa sổ chat góc phải – trắng, border mỏng, shadow nhẹ */
+.ai-chat-window {
+  position: fixed;
+  right: 24px;
+  bottom: 86px;
+  width: 380px;
+  max-height: 520px;
+  background: #ffffff;
+  border-radius: 18px;
+  box-shadow: 0 20px 40px rgba(15, 23, 42, 0.12);
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  z-index: 9999;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+}
+
+/* Header – nền tím rất nhạt, không quá chói */
+.ai-chat-header {
+  padding: 12px 14px;
+  border-bottom: 1px solid rgba(226, 232, 240, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #f5f3ff;
+}
+
+.ai-chat-header-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.ai-chat-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: #4f46e5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+}
+
+/* Title + subtitle */
+.ai-chat-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.ai-chat-subtitle {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+/* Badge online – chip nhỏ, gọn, không quá đậm */
+.ai-badge-online {
+  margin-top: 4px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 8px;
+  background: #ffffff;
+  color: #16a34a;
+  border-radius: 999px;
+  border: 1px solid rgba(209, 250, 229, 1);
+  font-size: 11px;
+}
+
+.ai-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #16a34a;
+}
+
+/* Nút đóng */
+.ai-chat-close {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 16px;
+  color: #6b7280;
+  padding: 4px;
+}
+
+/* Body – nền xám rất nhạt, không gradient */
+.ai-chat-body {
+  padding: 10px 12px;
+  flex: 1;
+  overflow-y: auto;
+  background: #f9fafb;
+}
+
+/* Tin nhắn chung */
+.ai-chat-message {
+  max-width: 92%;
+  padding: 8px 10px;
+  border-radius: 12px;
+  font-size: 13px;
+  line-height: 1.5;
+  margin-bottom: 8px;
+  white-space: pre-wrap;
+}
+
+/* Tin nhắn AI (bên trái) – nền trắng viền nhạt */
+.ai-msg-ai {
+  background: #ffffff;
+  border: 1px solid rgba(209, 213, 219, 0.8);
+  color: #111827;
+  align-self: flex-start;
+}
+
+/* Tin nhắn user (bên phải) – tím nhưng dịu, chữ trắng */
+.ai-msg-user {
+  background: #4f46e5;
+  border: 1px solid rgba(79, 70, 229, 0.9);
+  color: #ffffff;
+  align-self: flex-end;
+}
+
+/* Card đặc biệt (overview) */
+.ai-card {
+  border-radius: 14px;
+  background: #ffffff;
+  border: 1px solid rgba(199, 210, 254, 0.9);
+}
+
+/* Block mỗi kế hoạch */
+.ai-plan-block {
+  margin-top: 8px;
+  border-radius: 10px;
+  background: #f9fafb;
+  padding: 8px 8px 6px;
+  border: 1px solid rgba(229, 231, 235, 0.9);
+}
+
+/* Heading kế hoạch */
+.ai-plan-heading {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 6px;
+}
+
+.ai-plan-name {
+  color: #4338ca;
+}
+
+.ai-plan-count {
+  color: #6b7280;
+  font-weight: 500;
+}
+
+/* Pill "Kế hoạch" */
+.ai-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: #ede9fe;
+  color: #4338ca;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+/* Bảng overview */
+.ai-table-wrapper {
+  overflow: hidden;
+  border-radius: 8px;
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  background: #ffffff;
+}
+
+.ai-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+
+.ai-table th,
+.ai-table td {
+  padding: 6px 8px;
+  text-align: left;
+}
+
+.ai-table thead {
+  background: #f3f4f6;
+  color: #111827;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.ai-table tbody tr:nth-child(odd) {
+  background: #f9fafb;
+}
+
+.ai-table tbody tr:hover {
+  background: #eef2ff;
+}
+
+/* AI đang gõ */
+.ai-typing {
+  font-style: italic;
+  opacity: 0.9;
+}
+
+/* Input + button gửi – layout đơn giản, giống form bình thường */
+.ai-chat-input-row {
+  border-top: 1px solid #e5e7eb;
+  padding: 8px;
+  background: #ffffff;
+  display: flex;
+  gap: 6px;
+}
+
+.ai-chat-input {
+  flex: 1;
+  resize: none;
+  padding: 8px 10px;
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  font-size: 13px;
+  outline: none;
+  background: #f9fafb;
+  transition: box-shadow 0.12s ease, border-color 0.12s ease;
+}
+
+.ai-chat-input:focus {
+  border-color: #7c3aed;
+  box-shadow: 0 0 0 1px rgba(124, 58, 237, 0.25);
+}
+
+/* Nút gửi – nhỏ gọn, không quá nổi bật */
+.ai-chat-send-btn {
+  border-radius: 10px;
+  border: none;
+  padding: 0 14px;
+  font-size: 13px;
+  font-weight: 600;
+  background: #4f46e5;
+  color: #ffffff;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: opacity 0.12s ease, transform 0.12s ease,
+    box-shadow 0.12s ease;
+}
+
+.ai-chat-send-btn:disabled {
+  opacity: 0.55;
+  cursor: default;
+}
+
+.ai-chat-send-btn:not(:disabled):hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 18px rgba(79, 70, 229, 0.25);
+}
+
+
+
+/* Avatar trong header AI */
+.ai-chat-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #eef2ff;
+  margin-right: 12px;
+  flex-shrink: 0;
+}
+
+.ai-chat-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+
+/* Nút tròn AI ở góc màn hình */
+.ai-bubble-btn {
+  width: 70px;     /* Tăng từ 50px -> 70px */
+  height: 70px;
+  border-radius: 50%;
+  overflow: hidden;
+  padding: 0;
+}
+
+.ai-bubble-avatar {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+
+/* ===== Highlight cột Ngày chậm ===== */
+.ai-delay-summary {
+  margin: 4px 0 8px;
+  font-size: 12px;
+  color: #6b7280; /* xám nhẹ */
+}
+
+.ai-table td.ai-delay-cell {
+  text-align: center;
+  font-weight: 600;
+}
+
+.ai-delay-badge {
+  display: inline-block;
+  padding: 2px 10px;
+  min-width: 32px;
+  text-align: center;
+  border-radius: 999px;
+  background: #fee2e2;       /* hồng nhạt */
+  color: #b91c1c;            /* đỏ đậm */
+  font-weight: 700;
+  font-size: 13px;
+}
+
+/* Cho count “X bạn chậm” nổi hơn chút */
+.ai-plan-count {
+  font-size: 12px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: #eef2ff;
+  color: #3730a3;
+  font-weight: 600;
+}
